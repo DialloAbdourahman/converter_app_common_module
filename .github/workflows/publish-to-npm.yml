@@ -20,7 +20,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: rm -rf ./src
-      - run: npm version patch
+      # - run: npm version patch
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
