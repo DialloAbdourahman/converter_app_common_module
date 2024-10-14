@@ -3,11 +3,10 @@ import { CustomError } from "./custom-error";
 
 export class BadRequestError extends CustomError {
   statusCode: number = 400;
-  message: string;
   code: CODE;
 
   constructor(message: string, code: CODE) {
-    super();
+    super(message);
     this.message = message;
     this.code = code;
 
