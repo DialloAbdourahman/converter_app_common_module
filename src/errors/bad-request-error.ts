@@ -10,6 +10,9 @@ export class BadRequestError extends CustomError {
     super();
     this.message = message;
     this.code = code;
+
+    // Only because we are extending a built in class
+    Object.setPrototypeOf(this, BadRequestError.prototype);
   }
 
   serializeErrors(): { code: CODE; message: string } {
