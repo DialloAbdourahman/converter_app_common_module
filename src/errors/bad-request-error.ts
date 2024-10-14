@@ -7,7 +7,6 @@ export class BadRequestError extends CustomError {
 
   constructor(message: string, code: CODE) {
     super(message);
-    this.message = message;
     this.code = code;
 
     // Only because we are extending a built in class
