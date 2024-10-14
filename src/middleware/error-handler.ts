@@ -8,9 +8,9 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  // if (err instanceof CustomError) {
-  //   return res.status(err.statusCode).send(err.serializeErrors());
-  // }
+  if (err instanceof CustomError) {
+    return res.status(err.statusCode).send(err.serializeErrors());
+  }
 
   console.error("Unexpected error occured", err);
   res.status(500).send({
