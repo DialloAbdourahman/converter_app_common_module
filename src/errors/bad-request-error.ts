@@ -9,7 +9,6 @@ export class BadRequestError extends CustomError {
     super(message);
     this.code = code;
 
-    // Only because we are extending a built in class
     Object.setPrototypeOf(this, BadRequestError.prototype);
   }
 
