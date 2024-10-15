@@ -3,13 +3,11 @@ import { CustomError } from "./custom-error";
 
 export class UnauthorizedError extends CustomError {
   statusCode: number = 401;
-  code: CODE = CODE.UNAUTHORIZED;
+  code: CODE;
 
-  constructor(message: string, code?: CODE) {
+  constructor(message: string, code: CODE) {
     super(message);
-    if (code) {
-      this.code = code;
-    }
+    this.code = code;
 
     Object.setPrototypeOf(this, UnauthorizedError.prototype);
   }
