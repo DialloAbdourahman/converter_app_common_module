@@ -30,7 +30,7 @@ export const requireAuth = (
   try {
     const decoded: any = jwt.verify(
       access,
-      process.env.ACCESS_TOKEN_EXPIRATION as string
+      process.env.ACCESS_TOKEN_JWT_KEY as string
     );
 
     const { id, email } = decoded;
