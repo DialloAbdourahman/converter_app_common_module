@@ -16,7 +16,11 @@ declare global {
   }
 }
 
-const requireAuth = (req: Request, res: Response, next: NextFunction) => {
+export const requireAuth = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { access } = req.cookies;
 
   if (!access) {
