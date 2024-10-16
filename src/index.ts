@@ -15,3 +15,4 @@ export * from "./rabbitmq/constants/exchanges";
 export * from "./rabbitmq/constants/queues";
 export * from "./rabbitmq/base/publisher";
 export * from "./rabbitmq/events/user-created-event";
+export * from "./rabbitmq/events/user-updated-event";

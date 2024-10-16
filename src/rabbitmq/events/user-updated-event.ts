@@ -1,7 +1,7 @@
 import { KEYS } from "../constants/keys";
 
-export type UserCreatedEvent = {
-  key: KEYS.USER_CREATED;
+export type UserUpdateedEvent = {
+  key: KEYS.USER_UPDATED;
   data: {
     id: string;
     email: string;
