@@ -9,3 +9,8 @@ export * from "./errors/not-found-error";
 export * from "./middleware/error-handler";
 export * from "./middleware/validate-request";
 export * from "./middleware/require-auth";
+
+export * from "./rabbitmq/constants/keys";
+export * from "./rabbitmq/constants/exchanges";
+export * from "./rabbitmq/constants/queues";
+export * from "./rabbitmq/base/publisher";
