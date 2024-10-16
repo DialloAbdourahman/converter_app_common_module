@@ -5,5 +5,6 @@ export type UserCreatedEvent = {
   data: {
     id: string;
     email: string;
+    version: number;
   };
 };
