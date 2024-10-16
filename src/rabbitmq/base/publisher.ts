@@ -12,6 +12,10 @@ export abstract class Publisher<T extends Event> {
     this.conn = conn;
   }
 
+  stringify(data: any) {
+    return JSON.stringify(data);
+  }
+
   async publish(data: T["data"]) {
     const channel = await this.conn.createChannel();
 
@@ -22,14 +26,16 @@ export abstract class Publisher<T extends Event> {
     channel.publish(
       this.exchange,
       this.key,
-      Buffer.from(JSON.stringify(data)),
+      Buffer.from(this.stringify(data)),
       {
         persistent: true,
       }
     );
 
     console.log(
-      `SENT event with key: ${this.key}, exchange: ${this.exchange} and data: ${data}`
+      `SENT event with key: ${this.key}, exchange: ${
+        this.exchange
+      } and data: ${this.stringify(data)}`
     );
 
     channel.close();
