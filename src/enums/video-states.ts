@@ -1,0 +1,6 @@
+export enum VideoStates {
+  UPLOADED = "UPLOADED",
+  PROCESSING = "PROCESSING",
+  COMPLETE = "COMPLETE",
+  FAILED = "FAILED",
+}
