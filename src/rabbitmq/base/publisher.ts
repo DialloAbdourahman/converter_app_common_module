@@ -17,12 +17,15 @@ export abstract class Publisher<T extends Event> {
   }
 
   async publish(data: T["data"]) {
+    // Channel creation
     const channel = await this.conn.createChannel();
 
+    // Exchange creation / assertion
     await channel.assertExchange(this.exchange, "topic", {
       durable: true,
     });
 
+    // Publish function
     channel.publish(
       this.exchange,
       this.key,
