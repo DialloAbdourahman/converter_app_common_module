@@ -1,4 +1,4 @@
-import { Connection, ConsumeMessage } from "amqplib";
+import { Channel, Connection, ConsumeMessage } from "amqplib";
 import { KEYS } from "../constants/keys";
 import { EXCHANGES } from "../constants/exchanges";
 import { QUEUES } from "../constants/queues";
@@ -9,12 +9,17 @@ export abstract class Listener {
   abstract queue: QUEUES;
 
   private conn: Connection;
+  public channel!: Channel;
 
   constructor(conn: Connection) {
     this.conn = conn;
   }
 
-  abstract handleEvents(key: KEYS): void;
+  abstract handleEvents(
+    key: KEYS,
+    data: any,
+    consumeMessage: ConsumeMessage
+  ): void;
 
   parseMessage(msg: ConsumeMessage) {
     const data = msg.content.toString();
@@ -24,6 +29,7 @@ export abstract class Listener {
   async listen() {
     // Channel creation
     const channel = await this.conn.createChannel();
+    this.channel = channel;
 
     // Exchange creation / assertion
     await channel.assertExchange(this.exchange, "topic", {
@@ -53,7 +59,7 @@ export abstract class Listener {
             parsedData
           );
 
-          this.handleEvents(key);
+          this.handleEvents(key, parsedData, msg);
         }
       },
       {
