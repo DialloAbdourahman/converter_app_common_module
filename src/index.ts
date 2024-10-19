@@ -18,6 +18,8 @@ export * from "./rabbitmq/constants/exchanges";
 export * from "./rabbitmq/constants/queues";
 export * from "./rabbitmq/events/user-created-event";
 export * from "./rabbitmq/events/user-updated-event";
+export * from "./rabbitmq/events/video-converted-event";
+export * from "./rabbitmq/events/video-uploaded-event";
 
 export * from "./aws/aws-s3-helper";
 
