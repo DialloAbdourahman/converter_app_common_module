@@ -68,7 +68,7 @@ export abstract class Listener {
     );
 
     console.log(
-      `[*] Waiting for messages on the tickets service and queue: ${this.queue}. To exit press CTRL+C`
+      `[*] Waiting for messages on queue: ${this.queue}. To exit press CTRL+C`
     );
   }
 }
