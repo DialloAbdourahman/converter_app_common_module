@@ -20,3 +20,5 @@ export * from "./rabbitmq/events/user-created-event";
 export * from "./rabbitmq/events/user-updated-event";
 
 export * from "./aws/aws-s3-helper";
+
+export * from "./utils/generateRandomString";
