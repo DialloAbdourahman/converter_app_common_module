@@ -19,10 +19,17 @@ export class OrchestrationResult {
     return;
   }
 
-  static item(res: Response, data: any) {
-    res.status(200).json({
+  static item(res: Response, data: any, status?: number) {
+    const stat = status || 200;
+    res.status(stat).json({
       data,
     });
+    return;
+  }
+
+  static success(res: Response, data: any, status?: number) {
+    const stat = status || 200;
+    res.status(stat).send();
     return;
   }
 }

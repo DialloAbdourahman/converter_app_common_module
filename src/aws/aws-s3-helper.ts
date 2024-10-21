@@ -175,7 +175,7 @@ export class AwsS3Helper {
     }
   }
 
-  async deleteAudeoFromS3(key: string) {
+  async deleteAudioFromS3(key: string) {
     const params = {
       Bucket: this.bucketName,
       Key: `audios/${key}`,
