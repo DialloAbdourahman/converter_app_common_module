@@ -21,6 +21,8 @@ export * from "./rabbitmq/events/user-updated-event";
 export * from "./rabbitmq/events/video-converted-event";
 export * from "./rabbitmq/events/video-uploaded-event";
 export * from "./rabbitmq/events/video-not-converted-event";
+export * from "./rabbitmq/events/notification-video-converted-event";
+export * from "./rabbitmq/events/notification-video-not-converted-event";
 
 export * from "./aws/aws-s3-helper";
 

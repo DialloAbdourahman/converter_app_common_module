@@ -3,6 +3,7 @@ export enum KEYS {
   USER_UPDATED = "user.updated",
   VIDEO_UPLOADED = "video.uploaded",
   VIDEO_CONVERTED = "video.converted",
-  NOTIFY_USER = "notify.user",
   VIDEO_NOT_CONVERTED = "video.notconverted",
+  NOTIFICATION_VIDEO_CONVERTED = "notification.videoconverted",
+  NOTIFICATION_VIDEO_NOT_CONVERTED = "notification.videonotconverted",
 }
