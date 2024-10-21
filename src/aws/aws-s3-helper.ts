@@ -1,4 +1,5 @@
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
   PutObjectCommand,
   S3Client,
@@ -6,6 +7,7 @@ import {
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { PassThrough } from "stream";
 import { spawn } from "child_process";
+import { Upload } from "@aws-sdk/lib-storage";
 import { generateRandomString } from "../utils/generateRandomString";
 
 export class AwsS3Helper {
@@ -51,14 +53,23 @@ export class AwsS3Helper {
   async uploadAudio(key: string, mp3Stream: PassThrough) {
     const params = {
       Bucket: this.bucketName,
-      Key: `videos/${key}`,
+      Key: `audios/${key}`,
       Body: mp3Stream,
+      ContentType: "audio/mpeg",
     };
 
-    const command = new PutObjectCommand(params);
+    const upload = new Upload({
+      client: this.s3,
+      params,
+      queueSize: 3,
+      leavePartsOnError: false,
+    });
+
+    // const command = new PutObjectCommand(params);
 
     try {
-      await this.s3.send(command);
+      await upload.done();
+      console.log("mp3 file uploaded to s3");
     } catch (error) {
       throw error;
     }
@@ -114,7 +125,7 @@ export class AwsS3Helper {
 
       ffmpegProcess.stdout.pipe(mp3Stream);
 
-      const s3key = generateRandomString(10);
+      const s3key = generateRandomString(20);
       await this.uploadAudio(s3key, mp3Stream);
 
       ffmpegProcess.on("close", (code) => {
@@ -128,10 +139,26 @@ export class AwsS3Helper {
       ffmpegProcess.stderr.on("data", (data) => {
         console.error(`ffmpeg error: ${data}`);
       });
+
+      return s3key;
     } catch (error) {
       console.error("Error converting video to MP3:", error);
+      throw error;
     }
   }
 
-  async delete() {}
+  async deleteVideoFromS3(key: string) {
+    const params = {
+      Bucket: this.bucketName,
+      Key: `videos/${key}`,
+    };
+
+    const command = new DeleteObjectCommand(params);
+
+    try {
+      await this.s3.send(command);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
