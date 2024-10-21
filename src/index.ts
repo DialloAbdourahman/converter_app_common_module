@@ -27,3 +27,5 @@ export * from "./rabbitmq/events/notification-video-not-converted-event";
 export * from "./aws/aws-s3-helper";
 
 export * from "./utils/generateRandomString";
+export * from "./utils/get-page-and-items-per-page-from-request";
+export * from "./utils/orchestration-result";
