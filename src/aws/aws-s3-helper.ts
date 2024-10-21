@@ -174,4 +174,19 @@ export class AwsS3Helper {
       throw error;
     }
   }
+
+  async deleteAudeoFromS3(key: string) {
+    const params = {
+      Bucket: this.bucketName,
+      Key: `audios/${key}`,
+    };
+
+    const command = new DeleteObjectCommand(params);
+
+    try {
+      await this.s3.send(command);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
