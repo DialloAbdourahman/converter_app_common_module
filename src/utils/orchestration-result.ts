@@ -27,7 +27,7 @@ export class OrchestrationResult {
     return;
   }
 
-  static success(res: Response, data: any, status?: number) {
+  static success(res: Response, status?: number) {
     const stat = status || 200;
     res.status(stat).send();
     return;
