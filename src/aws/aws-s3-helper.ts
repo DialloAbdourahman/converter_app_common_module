@@ -15,6 +15,7 @@ export class AwsS3Helper {
 
   private bucketName: string;
   private bucketRegion: string;
+
   private accessKey: string;
   private secretKey: string;
 
@@ -79,6 +80,18 @@ export class AwsS3Helper {
     const params = {
       Bucket: this.bucketName,
       Key: `videos/${key}`,
+    };
+
+    const command = new GetObjectCommand(params);
+    const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 }); // 1hr = 3600
+
+    return url;
+  }
+
+  async getAudioUrl(key: string): Promise<string> {
+    const params = {
+      Bucket: this.bucketName,
+      Key: `audios/${key}`,
     };
 
     const command = new GetObjectCommand(params);
