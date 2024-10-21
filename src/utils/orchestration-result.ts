@@ -1,10 +1,9 @@
 import { Response } from "express";
-import { Document } from "mongoose";
 
 export class OrchestrationResult {
   static list(
     res: Response,
-    data: Document[],
+    data: any[],
     totalItems: number,
     itemsPerPage: number,
     page: number
@@ -20,7 +19,7 @@ export class OrchestrationResult {
     return;
   }
 
-  static item(res: Response, data: Document) {
+  static item(res: Response, data: any) {
     res.status(200).json({
       data,
     });
