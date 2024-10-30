@@ -5,5 +5,6 @@ export type NotificationVideoNotConvertedEvent = {
   data: {
     resourceId: string;
     email: string;
+    fullname: string;
   };
 };

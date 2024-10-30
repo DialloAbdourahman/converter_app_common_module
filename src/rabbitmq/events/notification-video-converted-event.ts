@@ -5,5 +5,6 @@ export type NotificationVideoConvertedEvent = {
   data: {
     resourceId: string;
     email: string;
+    fullname: string;
   };
 };
