@@ -7,5 +7,6 @@ export type UserCreatedEvent = {
     email: string;
     fullname: string;
     version: number;
+    code: string;
   };
 };

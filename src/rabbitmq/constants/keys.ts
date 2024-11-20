@@ -6,4 +6,5 @@ export enum KEYS {
   VIDEO_NOT_CONVERTED = "video.notconverted",
   NOTIFICATION_VIDEO_CONVERTED = "notification.videoconverted",
   NOTIFICATION_VIDEO_NOT_CONVERTED = "notification.videonotconverted",
+  FORGOT_PASSWORD = "forgot.password",
 }
